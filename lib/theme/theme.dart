@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 final theme = ThemeData(
+  primarySwatch: Colors.amber,
   cardTheme: const CardTheme(color: Color.fromARGB(255, 184, 140, 5)),
   dividerColor: Colors.white24,
   scaffoldBackgroundColor: const Color.fromARGB(255, 32, 31, 31),
@@ -19,7 +20,7 @@ final theme = ThemeData(
       )),
   appBarTheme: const AppBarTheme(
       elevation: 3,
-      backgroundColor: Color.fromARGB(255, 32, 31, 31),
+      backgroundColor: Color.fromARGB(255, 184, 140, 5),
       shadowColor: Colors.amber,
       titleTextStyle: TextStyle(
         color: Colors.white,
@@ -28,6 +29,4 @@ final theme = ThemeData(
       ),
       iconTheme: IconThemeData(color: Colors.white),
       centerTitle: true),
-  primarySwatch: Colors.amber,
-  useMaterial3: true,
 );

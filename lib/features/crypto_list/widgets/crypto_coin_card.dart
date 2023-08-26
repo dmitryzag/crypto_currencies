@@ -1,13 +1,13 @@
+import 'package:crypto_coins_list/repositories/crypto_coins/models/crypto_coin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CryptoCoinCard extends StatelessWidget {
   const CryptoCoinCard({
     super.key,
-    required this.coinName,
+    required this.cryptoCoin,
   });
 
-  final String coinName;
+  final CryptoCoin cryptoCoin;
 
   @override
   Widget build(BuildContext context) {
@@ -15,24 +15,20 @@ class CryptoCoinCard extends StatelessWidget {
 
     return Card(
       child: ListTile(
-        leading: SvgPicture.asset(
-          'assets/images/bitcoin.svg',
-          height: 40,
-          width: 40,
-        ),
+        leading: Image.network(cryptoCoin.imageURL),
         title: Text(
-          coinName,
+          cryptoCoin.name,
           style: theme.textTheme.bodyMedium,
         ),
         subtitle: Text(
-          '203020\$',
+          '${cryptoCoin.priceToUSD}\$',
           style: theme.textTheme.labelSmall,
         ),
         trailing: const Icon(Icons.arrow_forward_ios),
         onTap: () {
           Navigator.of(context).pushNamed(
             '/coin',
-            arguments: coinName,
+            arguments: cryptoCoin,
           );
         },
       ),
