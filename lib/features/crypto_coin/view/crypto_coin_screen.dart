@@ -1,5 +1,6 @@
-import 'package:crypto_coins_list/features/crypto_coin/bloc/crypto_coin_details_bloc.dart';
+import 'package:crypto_coins_list/features/crypto_coin/crypto_coin.dart';
 import 'package:crypto_coins_list/repositories/crypto_coins/crypto_coins.dart';
+import 'package:crypto_coins_list/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -27,15 +28,41 @@ class _CryptoCoinScreenState extends State<CryptoCoinScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('...'),
-      ),
+      appBar: AppBar(),
       body: BlocBuilder<CryptoCoinDetailsBloc, CryptoCoinDetailsState>(
         bloc: _cryptoCoinsListBloc,
         builder: (context, state) {
-          print(state);
           if (state is CryptoCoinLoaded) {
-            return Text(state.coin.coinName);
+            return Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Image.network(
+                      state.coin.imageURL,
+                      width: 150,
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  Text(
+                    state.coin.coinName,
+                    style: theme.textTheme.bodyLarge,
+                  ),
+                  const SizedBox(height: 15),
+                  PriceCard(priceInUSD: state.coin.priceInUSD),
+                  const SizedBox(height: 25),
+                  DetailCard(
+                      highestPrice: state.coin.highestPrice,
+                      lowestPrice: state.coin.lowestPrice)
+                ],
+              ),
+            );
+          }
+          if (state is CryptoCoinLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
           return Container();
         },

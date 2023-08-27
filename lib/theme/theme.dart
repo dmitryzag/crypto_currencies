@@ -8,6 +8,11 @@ final theme = ThemeData(
   listTileTheme:
       const ListTileThemeData(textColor: Colors.white, iconColor: Colors.white),
   textTheme: const TextTheme(
+      bodyLarge: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.w500,
+        fontSize: 25,
+      ),
       bodyMedium: TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.w500,
